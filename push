@@ -1,0 +1,10 @@
+#!/bin/sh
+echo "Executing generator/generate.py..."
+cd generator
+if ! python3 generate.py; then
+    echo "Error: generate.py failed. Push aborted."
+    exit 1
+fi
+echo "generate.py executed successfully. Proceeding with push."
+jj b s master -r @ && jj git push
+exit 0
