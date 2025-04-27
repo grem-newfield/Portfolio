@@ -85,7 +85,7 @@ class Page:
          if page.group_name == 'projects':
             active_str = 'class="active"' if page.active_id == self.metadata['active'] else ''
             project_links.append(
-               '<a href="/{0}" {1}>{2}</a>'.format(page.output_filename, active_str, page.input_id.upper())
+               '<a href="Portfolio/{0}" {1}>{2}</a>'.format(page.output_filename, active_str, page.input_id.upper())
             )
       sidebar_links.append('<div class="sub-menu">' + '\n'.join(project_links) + '</div>')
 
@@ -99,8 +99,8 @@ class Page:
       for page in PAGES:
          if page.output_filename == filename:
             active_str = 'class="active"' if page.active_id == self.metadata['active'] else ''
-            return '<a href="/{0}" {1}>{2}</a>'.format(filename, active_str, label)
-      return f'<a href="/{0}">{1}</a>'.format(filename, label)
+            return '<a href="Portfolio/{0}" {1}>{2}</a>'.format(filename, active_str, label)
+      return f'<a href="Portfolio/{0}">{1}</a>'.format(filename, label)
 
 
 PAGES = [
