@@ -16,17 +16,17 @@ with open(os.path.join(TEMPLATE_DIR, 'base.html'), 'r') as f:
 
 class Page:
    def __init__(self, input_id, output_filename, active_id, group_name=None):
-      self.input_id = input_id  # (str) name of file/project
-      self.output_filename = output_filename  # (str)
-      self.active_id = active_id  # (str) active page identifier (use for menu highlight)
-      self.group_name = group_name  # (str or None) projects submenu? other submenu?
+      self.input_id: str = input_id  # name of file/project
+      self.output_filename: str = output_filename
+      self.active_id: str = active_id  # active page identifier (use for menu highlight)
+      self.group_name: str | None = group_name  # projects submenu? other submenu?
 
-      self.content_file_path = None  # (str)
-      self.metadata_file_path = None  # (str)
+      self.content_file_path: str
+      self.metadata_file_path: str
 
-      self.metadata = None  # (dict) metadata from JSON
-      self.content = None  # (str) (HTML) loaded content
-      self.sidebar_html = None  # (str) (HTML)
+      self.metadata: dict  # metadata from JSON
+      self.content: str  # (HTML) loaded content
+      self.sidebar_html: str  # (HTML)
 
    def load_paths(self):
       try:
@@ -49,14 +49,6 @@ class Page:
       except json.JSONDecodeError as e:
          print(f'[ERROR] Invalid json for {self.input_id}: {e}')
 
-   # def make_submenu(self):
-   #    submenu = []
-   #    for page in PAGES:
-   #       if page.group_name == 'projects':
-   #          active_str = 'class="active"' if page.active_id == self.metadata['active'] else ''
-   #          submenu.append(f'<a href="/{page.output_filename}" {active_str}>{page.input_id.upper()}</a>')
-   #    self.submenu_html = '\n'.join(submenu)
-
    def write_template(self):
       self.template = base_template
       self.template = self.template.replace('{{ title }}', self.metadata['title'])
@@ -74,12 +66,10 @@ class Page:
    def make_sidebar(self):
       sidebar_links = []
 
-      # Top links
       sidebar_links.append(self._make_link('index.html', 'main page'))
 
       sidebar_links.append('<div>/PROJECTS</div>')
 
-      # Project submenu
       project_links = []
       for page in PAGES:
          if page.group_name == 'projects':
@@ -89,7 +79,6 @@ class Page:
             )
       sidebar_links.append('<div class="sub-menu">' + '\n'.join(project_links) + '</div>')
 
-      # Bottom links
       sidebar_links.append(self._make_link('contact.html', 'contact'))
       sidebar_links.append(self._make_link('about.html', 'about'))
 
@@ -108,7 +97,7 @@ PAGES = [
    Page('contact', 'contact.html', active_id='contact'),
    Page('about', 'about.html', active_id='about'),
    Page('project1', 'project1.html', active_id='project1', group_name='projects'),
-   Page('project2', 'project2.html', active_id='project2', group_name='projects'),
+   Page('TrackStar', 'trackstar.html', active_id='trackstar', group_name='projects'),
 ]
 
 

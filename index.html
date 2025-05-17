@@ -3,38 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Home | Game Dev</title>
     <link rel="stylesheet" href="css/modern-normalize.css" />
-    <link rel="stylesheet" href="css/hack.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <script>
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark-theme");
+      }
+    </script>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div class="container">
-      <nav class="sidebar"> <a href="index.html" class="active">main page</a>
+      <nav class="sidebar">
+        <a href="index.html" class="active">main page</a>
 <div>/PROJECTS</div>
 <div class="sub-menu"><a href="project1.html" >PROJECT1</a>
-<a href="project2.html" >PROJECT2</a></div>
+<a href="trackstar.html" >TRACKSTAR</a></div>
 <a href="contact.html" >contact</a>
-<a href="about.html" >about</a> </nav>
-      <main class="content">     
-      <div>
-      <h1>Hello, and welcome to <i>The International</i> </h1>
-      </div>
+<a href="about.html" >about</a>
+        <button class="theme-toggle">🌙 / ☀️</button>
+      </nav>
+      <main class="content"><div>
+  <h1>Hello, and welcome to <i>My Portfolio</i></h1>
+</div>
+<hr />
 
-<div>It's a me, Game Design Student at <span class="info-popup" data-info="Metropolia University of Applied Sciences">Metropolia UAS</span></div>
+<p>
+  Game Development Student at
+<a href="https://www.metropolia.fi/en">
+  <span
+    class="info-popup"
+    data-info="Finland, Helsinki, Metropolia University of Applied Sciences"
+    >Metropolia UAS</span
+  >
+</p></a>
+<p>Expected Graduation Year: 2027</p>
 
-
-    <div class="card" id="new project pop-up">
-      <div class="card-head">Hello!</div>
-      <div class="card-content">
-        Would you like to check out my latest project?
-        <br />
-        <button class="button"onclick="window.location.href='project2.html'">Go!</button>
-        <button class="button" onclick="document.getElementById('new project pop-up').style.display='none'" >Dismiss</button>
-      </div>
-
-    </div>
- </main>
+<div class="card" id="new project pop-up">
+  <div class="card-head">Attention!</div>
+  <div class="card-content">
+    Would you like to check out my latest project?
+    <br />
+    <button class="button" onclick="window.location.href='trackstar.html'">
+      Go!
+    </button>
+    <button
+      class="button"
+      onclick="document.getElementById('new project pop-up').style.display='none'"
+    >
+      Dismiss
+    </button>
+  </div>
+</div>
+</main>
     </div>
   </body>
+  <script>
+    const toggleButton = document.querySelector(".theme-toggle");
+
+    function updateThemeUI() {
+      const isDark = document.documentElement.classList.contains("dark-theme");
+      toggleButton.textContent = isDark ? "☀️" : "🌙";
+    }
+
+    toggleButton.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark-theme");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      updateThemeUI();
+    });
+
+    updateThemeUI();
+  </script>
 </html>
