@@ -1,28 +1,115 @@
-body {
-  font-family: "Hack", monospace;
-  background: #fff;
+/* Default (Light) Theme */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #030303;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #000000;
+  --content-bg: linear-gradient(
+    135deg,
+    white 0%,
+    white 49%,
+    #c0c0c0 49%,
+    #c0c0c0 51%,
+    white 51%,
+    white 100%
+  );
+  --content-bg-size: 20px 20px;
+  --link-hover-color: #ffffff;
+  --link-hover-bg: #000000;
+  --link-hover-text: #ffffff;
+  --caption-color: #888888;
+}
+
+/* Dark Theme */
+.dark-theme {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --sidebar-bg: #000000;
+  --sidebar-text: #ffffff;
+  --content-bg: linear-gradient(
+    135deg,
+    black 0%,
+    black 49%,
+    #555555 49%,
+    #555555 51%,
+    black 51%,
+    black 100%
+  );
+  --content-bg-size: 20px 20px;
+  --link-hover-color: #000000;
+  --link-hover-bg: #ffffff;
+  --link-hover-text: #000000;
+  --caption-color: #cccccc;
+}
+
+/* Light Theme Specifics */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+li {
+  background-color: white;
+  padding: 0 6px;
+  width: fit-content;
+}
+a,
+a:visited {
   color: #000;
+}
+
+/* Dark Theme Specifics */
+.dark-theme p,
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme h4,
+.dark-theme h5,
+.dark-theme li {
+  background-color: black;
+  padding: 0 6px;
+  width: fit-content;
+}
+
+.dark-theme a,
+.dark-theme a:visited {
+  color: #fff;
+}
+.dark-theme body {
+  /* text-shadow: 0.06em 0.06em black; */
+}
+
+/* General Styles */
+body {
+  font-family: "Frutiger", "Hack", monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   margin: 0;
   line-height: 1.4;
 }
 
-/* Main Grid Layout */
 .container {
-  display: grid;
-  grid-template-columns: 250px 1fr;
+  display: flex;
+  font-size: 1.2em;
   min-height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
-  background: #fff;
-  color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
   padding: 20px;
-  display: block;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .sidebar a {
-  color: #000;
+  color: var(--sidebar-text);
   text-decoration: none;
   display: block;
   margin: 10px 0;
@@ -37,18 +124,40 @@ body {
 }
 
 .sidebar a:hover {
-  background: #000;
-  color: #fff;
+  background: var(--link-hover-bg);
+  color: var(--link-hover-text);
 }
 
 .sidebar .active::before {
   content: "[*] ";
 }
 
-
-/* Content Area */
 .content {
-  padding: 40px;
+  margin-left: 300px;
+  padding: 20px;
+  width: 100%;
+  background: var(--content-bg);
+  background-size: var(--content-bg-size);
+}
+
+.content a:hover {
+  color: var(--link-hover-color);
+}
+
+.dark-theme .content a:hover {
+  color: var(--link-hover-color);
+  text-shadow: none;
+  font-weight: bold;
+}
+
+.caption {
+  color: var(--caption-color);
+  font-style: italic;
+}
+
+p a:hover {
+  color: var(--link-hover-text);
+  background-color: var(--link-hover-bg);
 }
 
 /* Contact Page Grid */
@@ -62,7 +171,7 @@ body {
 .contact-grid h1 {
   grid-column: 1 / -1;
   font-size: 2.5rem;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--text-color);
   padding-bottom: 10px;
 }
 
@@ -78,94 +187,51 @@ body {
 }
 
 .contact-grid a {
-  color: #000;
+  color: var(--text-color);
   text-decoration: underline;
 }
 
 .contact-grid a:hover {
-  background: #000;
-  color: #fff;
+  background: var(--link-hover-bg);
+  color: var(--link-hover-text);
 }
 
-.contact-grid {
-  /* border: 1px dotted #f00; */
-  /* overflow: hidden;*/
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Mobile Responsive */
-@media (max-width: 680px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-
-  /* .sidebar { */
-    /* display: block; */
-  /* } */
-
-  /* .sidebar .bottom-links { */
-    /* display: none; */
-  /* } */
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns for interweaving */
-    grid-template-areas: 
-      "info data"; /* Info on the left, data on the right */
-    gap: 10px; /* Small gap between the items */
-  }
-
-  .contact-grid .info {
-    grid-area: info;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .contact-grid .data {
-    grid-area: data;
-    display: flex;
-    flex-direction: column;
-  }
-
-
-  .card {
-    display: none;
-  }
-}
-
-/* Pop-Up */
+/* Pop-Up Card */
 .card {
-  width: 190px;
-  height: 180px;
+  width: 235px;
+  height: 200px;
   translate: -6px -6px;
-  background: #ccc;
-  border: 3px solid #000000;
-  box-shadow: 12px 12px 0 #000000;
+  background: #cccccc;
+  border: 3px solid black;
+  box-shadow: 12px 12px 0 black;
   overflow: hidden;
   transition: all 0.1s ease;
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 20px;
 }
+
 .card-content {
   padding: 10px;
+  color: black;
 }
+
 .card-head {
   font-size: 20px;
   font-weight: 900;
   width: 100%;
   height: 40px;
-  background: #ffffff;
+  background: var(--bg-color);
   padding: 5px 12px;
-  color: #000000;
-  border-bottom: 3px solid #000000;
+  color: var(--text-color);
+  border-bottom: 3px solid black;
 }
+
 .button {
   padding: 5px 10px;
   margin-top: 10px;
-  border: 3px solid #000000;
-  box-shadow: 3px 3px 0 #000000;
+  border: 3px solid black;
+  box-shadow: 3px 3px 0 black;
   font-weight: 750;
   background: #00ffcc;
   transition: all 0.1s ease;
@@ -174,19 +240,19 @@ body {
 
 .button:hover {
   translate: 1.5px 1.5px;
-  box-shadow: 1.5px 1.5px 0 #000000;
+  box-shadow: 1.5px 1.5px 0 black;
   background: #ffc700;
 }
 
 .button:active {
   translate: 3px 3px;
-  box-shadow: 0 0 0 #000000;
+  box-shadow: 0 0 0 var(--text-color);
 }
 
 .card:hover {
   animation: shake 0.1s;
-  /* rotate: 1deg; */
 }
+
 @keyframes shake {
   0% {
     rotate: 0deg;
@@ -199,34 +265,96 @@ body {
   }
 }
 
+/* Info Popup */
 .info-popup {
-  position: relative; /* So we can position the tooltip inside it */
-  cursor: pointer; 
-  text-decoration-line: underline; 
-  text-decoration-color: transparent; 
-  transition: text-decoration-color 0.2s ease; 
-  text-decoration-color: gray; 
+  position: relative;
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-color: gray;
+  transition: text-decoration-color 0.2s ease;
 }
 
 .info-popup::after {
-  content: attr(data-info); 
+  content: attr(data-info);
   position: absolute;
-  bottom: 100%; 
+  bottom: 100%;
   left: 50%;
-  transform: translateX(-50%); 
-  padding: 8px; background-color: #0fc;
+  transform: translateX(-50%);
+  padding: 8px;
+  background-color: #0fc;
   color: #000;
-  opacity: 0; 
-  visibility: hidden; 
-  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-  white-space: nowrap; 
-  z-index: 10; 
-  border: 3px solid #000000;
-  box-shadow: 3px 3px 0 #000000;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease-in-out,
+    visibility 0.2s ease-in-out;
+  white-space: nowrap;
+  z-index: 10;
+  border: 3px solid var(--text-color);
+  box-shadow: 3px 3px 0 var(--text-color);
 }
-
 
 .info-popup:hover::after {
   opacity: 1;
   visibility: visible;
+}
+
+/* Images */
+img {
+  max-height: 600px;
+  max-width: 100%;
+}
+
+/* Paragraphs and Lists */
+p,
+li {
+  margin: 0 0 1.5em 0;
+  line-height: 1.2;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  border: 3px solid var(--text-color);
+  cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 960px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    margin-left: 0;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "info data";
+    gap: 10px;
+  }
+
+  .contact-grid .info {
+    grid-area: info;
+  }
+
+  .contact-grid .data {
+    grid-area: data;
+  }
+
+  .card {
+    display: none;
+  }
 }

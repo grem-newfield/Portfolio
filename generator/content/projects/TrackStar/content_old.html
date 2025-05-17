@@ -1,0 +1,151 @@
+<h1>TrackStar</h1>
+
+<h2>Student Project: Racing Game made with Godot 4.4</h2>
+
+<h3>Project Overview</h3>
+
+<p>
+  As part of a student group project, I contributed to the development of a
+  racing game built in the Godot Engine. I proposed to clone a Ridge Racer type
+  game,so focus on drifting and nature scenery. This means unique arcadey
+  physics and drifting. Unlike a racing simulator the drifting in this game
+  shouldnt decrease your speed, but instead increase it to help with overtakes
+  of the AI cars around corners.
+</p>
+
+<hr />
+
+<h3>My Role and Contributions</h3>
+
+<p>
+  I took on the roles of Code Lead, Level Designer, and Level Artist, I took on
+  a multifaceted role, both technical implementation and creative design. Below,
+  I reflect on my contributions, the challenges faced, and the skills I honed
+  during this work.
+</p>
+
+<h4>Code Leadership and System Architecture</h4>
+<p>
+  Though not formally appointed as the project lead, I
+  <span class="info-popup" data-info="frfr"> <i>de facto</i> </span> stepped
+  into a leadership role due to my experience with Godot, game design, and code
+  architecture. I delegated tasks to team members based on their strengths,
+  hoping for efficient progress while maintaining a cohesive vision.
+  <!-- But more on that later. -->
+</p>
+<div>
+  My primary coding contributions included designing a Manager System to handle
+  the game’s core functionalities:
+  <ul>
+    <li>
+      <b>UI Manager</b>: Handles scene transitions for menus and race states.
+    </li>
+    <li><b>Tour Manager</b>: Loads game maps dynamically.</li>
+    <li>
+      <b>Player Manager</b>: Tracks player state (e.g., name, score, laps,
+      timers).
+    </li>
+    <li><b>Save Manager</b>: Save/load with data validation.</li>
+    <li><b>Logger Class</b>: Streamlined debugging.</li>
+  </ul>
+</div>
+
+<!-- "/assets/racing_game/<img>.png" -->
+<!-- <Pic 2. Log output example. Screenshot of the cool Log here> -->
+<img
+  src="https://placehold.co/600x400"
+  alt="Game menu showcasing UI Manager"
+  class="screenshot"
+/>
+
+<hr />
+<!-- <Pic 1. Ui manager Node structure Screenshot> -->
+
+<h4>Physics-Based Car Simulation</h4>
+
+<!-- Other team member was implementing a spent 2 months, on -->
+
+The fun part of the project for me was implementing a car using a RigidBody and
+raycast-based wheels. This system mimicked real-world vehicle dynamics,
+particularly for a sports/drift car.
+
+<h4>Key features:</h4>
+<ul>
+  <p>
+    <b>Spring Force and Suspension</b>: Raycasts simulated wheel suspension,
+    providing realistic terrain interaction.
+  </p>
+  <p>
+    <b>Sideways Slip and Drifting</b>: Configured forces to enable controlled
+    drifting, with only the rear wheels applying forward velocity to emulate a
+    rear-wheel-drive sports car.
+  </p>
+  <p><b>The cars forces are moderated by curves</b>:</p>
+  <p><b>Top Speed Falloff</b>: Prevented indefinite acceleration.</p>
+  <p>
+    <b>Steering Speed Falloff</b>: Reduced steering sensitivity at high speeds
+    for realism.
+  </p>
+  <p>
+    <b>Tyre Slip Curve</b>: Enabled drifting at higher speeds by adjusting grip
+    dynamically.
+  </p>
+  <p>
+    <b>Lerp Camera</b>: Implemented a smooth, interpolated camera system that
+    followed the car, enhancing the player’s immersion.
+  </p>
+</ul>
+<!-- Screenshot Suggestion : Capture the car in action, ideally mid-drift on a curve, -->
+<!-- to highlight the physics simulation. -->
+
+<!-- A short video clip or GIF of the car navigating the terrain with the lerp camera could be even more impactful. -->
+
+<h4>Level Design and Art</h4>
+<p>
+  As a Level Designer and Level Artist, I crafted the game’s environment using
+  the Terrain3D plugin in Godot. This plugin allowed me to sculpt a heightmap
+  with brushes and apply textures to create a visually rich racing track. I also
+  focused on establishing a realistic atmosphere through careful lighting, fog,
+  and environmental effects, immersing players in the racing experience.
+</p>
+<p>
+  In Blender, I modeled game assets (e.g., obstacles, props) and colliders to
+  ensure accurate physics interactions. Additionally, I developed a custom
+  workflow to enhance AI pathfinding: Blender Plugin: Created a plugin that
+  exports Bezier curves as JSON data, defining AI navigation paths.
+</p>
+<p>
+  Godot Plugin: Built a complementary plugin to import JSON data and generate
+  curve nodes in Godot, enabling smooth AI movement along the track.
+</p>
+<p>
+  <!-- Screenshot Suggestion: Showcase the sculpted terrain with applied textures or a -->
+  <!-- panoramic view of the track to highlight the level design. A side-by-side image -->
+  <!-- of a Blender model and its in-game counterpart would illustrate your asset -->
+  <!-- creation process. -->
+
+  <!-- Additionally, a diagram or screenshot of the AI path (Bezier curves) in action -->
+  <!-- would emphasize the plugin workflow. -->
+
+  Screenshot Suggestion: Include a top-down or angled view of the map to display the
+  terrain’s complexity and texture work. A close-up of a textured section (e.g.,
+  a transition from asphalt to dirt) could highlight your attention to detail.
+
+  <h3>Challenges and Lessons Learned</h3>
+
+  Technical Challenges
+
+  One significant challenge was optimizing the physics simulation to balance realism and performance.
+
+  <!-- <iframe -->
+  <!-- frameborder="0" -->
+  <!-- src="https://itch.io/embed/3562013?border_width=0&amp;bg_color=000000&amp;fg_color=efefef&amp;link_color=f61919&amp;border_color=333333" -->
+  <!-- width="550" -->
+  <!-- height="165" -->
+  <!-- ><a href="https://newfield.itch.io/trackstar" -->
+  <!-- >TrackStar by grem-newfield</a -->
+  <!-- ></iframe -->
+  <!-- > -->
+</p>
+
+<hr />

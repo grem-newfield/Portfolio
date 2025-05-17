@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TrackStar | Game Dev</title>
+    <link rel="stylesheet" href="css/modern-normalize.css" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <script>
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark-theme");
+      }
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="sidebar">
+        <a href="index.html" >main page</a>
+<div>/PROJECTS</div>
+<div class="sub-menu"><a href="project1.html" >PROJECT1</a>
+<a href="trackstar.html" class="active">TRACKSTAR</a></div>
+<a href="contact.html" >contact</a>
+<a href="about.html" >about</a>
+        <button class="theme-toggle">🌙 / ☀️</button>
+      </nav>
+      <main class="content"><h1>TrackStar</h1>
+
+<h2>Portfolio Project 2 Course: Racing Game in Godot 4.4</h2>
+
+<h3>Project Overview</h3>
+<p>
+  As part of a student group project, I contributed to the development of a
+  racing game built in the
+  <a href="https://godotengine.org/">Godot Engine</a>. I proposed to create a
+  Ridge Racer-type game, with focus on drifting and nature scenery. This means
+  unique arcade-style drifting physics and unlike in a racing simulator the
+  drifting around corners in this game should increase your speed to facilitate
+  overtaking AI cars.
+</p>
+
+<iframe
+  frameborder="0"
+  src="https://itch.io/embed/3562013?border_width=0&amp;bg_color=000000&amp;fg_color=efefef&amp;link_color=f61919&amp;border_color=333333"
+  width="550"
+  height="165"
+  ><a href="https://newfield.itch.io/trackstar"
+    >TrackStar by grem-newfield</a
+  ></iframe
+>
+<hr />
+
+<h3>My Role and Contributions</h3>
+<p>
+  I took on the roles of Code Lead, Level Designer, and Level Artist, I took on
+  a multifaceted role, both technical implementation and creative design. Below,
+  I reflect on my contributions, the challenges faced, and the skills I honed
+  during this work.
+</p>
+<p>
+  Though not formally appointed as the project lead, I assumed a leadership role
+  due to my experience with Godot, game design, and code architecture. I
+  delegated tasks to team members based on their strengths, hoping for efficient
+  progress while maintaining a cohesive vision.
+</p>
+<p>
+  My primary coding contributions included designing a Manager System to handle
+  the game’s core functionalities:
+</p>
+<ul>
+  <li>
+    <b>UI Manager</b>: Handles scene transitions for menus and race states.
+  </li>
+  <li><b>Tour Manager</b>: Loads game maps dynamically.</li>
+  <li>
+    <b>Player Manager</b>: Tracks player state (e.g., name, score, laps,
+    timers).
+  </li>
+  <li><b>Save Manager</b>: Save/load with data validation.</li>
+</ul>
+<img src="assets/TrackStar/ui_manager_node_structure.png" />
+<p class="caption">UI Manager node structure.</p>
+<img src="assets/TrackStar/logger_output.png" />
+<p class="caption">Example of the Logger output.</p>
+
+<h4>Physics-Based Car Simulation</h4>
+<p>
+  The fun part of the project for me was implementing a car using a RigidBody
+  and raycast-based wheels. The car drives by applying forces at the raycasts,
+  which simulate wheels.
+</p>
+<p>
+  <b>Spring Force and Suspension</b>: Raycasts return a collision points with
+  the ground every frame, and then I apply a force based on how far the spring
+  is from its resting point. The force is scaled by the spring’s stiffness to
+  make the car’s suspension feel bouncy, like real shocks.
+</p>
+<p>
+  <b>Sideways Slip and Drifting</b>: Car is stabilized by applying lateral
+  forces to counteract sideways slip. Only the rear wheels provide forward
+  velocity, simulating rear-wheel-drive dynamics. At higher speeds, the lateral
+  force curve is tuned according to a grip curve to permit increased slip,
+  enabling dynamic and controlled drifting
+</p>
+<p>
+  <b>Use of Curves</b>: The car's forces are scaled by curves that map speed to
+  a force multiplier. As speed climbs, the top speed falloff curve gradually
+  limits acceleration to prevent infinite speeding up. Steering force is zero at
+  near-zero speeds, reflecting how wheels need to roll to turn effectively. The
+  tire slip curve decreases tyre grip in at higher speeds, to allow for
+  drifting.
+</p>
+<img src="assets/TrackStar/car_collider.png" class="screenshot" />
+<p class="caption">The car collider with ray-casts.</p>
+
+<h4>Level Design and Art</h4>
+<p>
+  As a Level Designer and Level Artist, I crafted the game’s environment using
+  the Terrain3D plugin in Godot. This plugin allowed me to sculpt a heightmap
+  with brushes and apply textures to create a visually rich racing track. I also
+  focused on establishing a realistic atmosphere through careful lighting, fog,
+  and environmental effects.
+</p>
+<p>
+  In Blender, I modeled roads and their colliders to ensure player stays on the
+  road. Additionally, I wrote scripts to export a list of assets I want in glTf
+  and a Bézier curve to JSON exporter for AI paths. Plus a complementary Godot
+  plugin to import JSON data and generate path nodes in Godot.
+</p>
+<img src="assets/TrackStar/blender_to_godot.jpg" class="screenshot" />
+<p class="caption">
+  Side-by-side view of a Blender plan and its in-game counterpart.
+</p>
+<img src="assets/TrackStar/fog_demo.jpg" class="screenshot" />
+<p class="caption">Atmospheric fog demonstration.</p>
+<img
+  src="assets/TrackStar/curve_export.jpg "
+  alt="Bezier curve export script in Blender, for AI paths"
+  class="screenshot"
+/>
+<p class="caption">AI paths, ready for export.</p>
+
+<h3>Challenges and Lessons Learned</h3>
+<p>
+  There were no overwhelming technical challenges for me personally; I
+  intentionally chose a straightforward genre and design to focus on group work.
+  The main challenge was aligning the team’s timelines and skillsets. I learned
+  the value of structured team onboarding: setting clear roles, deadlines,
+  check‑ins and consequences. I learned that even student projects benefit from
+  a careful selection process, including informal “interviews” to ensure shared
+  commitment.
+</p>
+
+<h3>Conclusion</h3>
+<p>
+  Although the project was not completed due to varying levels of team
+  engagement, I delivered fully functional core systems and became more skilled
+  at working with Godot during this project. I will place more importance on
+  choosing peers that are passionate about gamedev for the upcoming Portfolio
+  Project 3 course.
+</p>
+
+<!-- The burning swords protect us. -->
+</main>
+    </div>
+  </body>
+  <script>
+    const toggleButton = document.querySelector(".theme-toggle");
+
+    function updateThemeUI() {
+      const isDark = document.documentElement.classList.contains("dark-theme");
+      toggleButton.textContent = isDark ? "☀️" : "🌙";
+    }
+
+    toggleButton.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark-theme");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      updateThemeUI();
+    });
+
+    updateThemeUI();
+  </script>
+</html>
